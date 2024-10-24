@@ -10,9 +10,9 @@ namespace ResourceSystem.Services
     // Only for repeatable timers
     public class MonoTimerHandler : MonoBehaviour
     {
-        private readonly Dictionary<GUID, Coroutine> _coroutines = new();
+        private readonly Dictionary<int, Coroutine> _coroutines = new();
 
-        public void StartTimer(float time, Action callback, GUID timerId)
+        public void StartTimer(float time, Action callback, int timerId)
         {
             _coroutines.TryAdd(timerId, null);
             

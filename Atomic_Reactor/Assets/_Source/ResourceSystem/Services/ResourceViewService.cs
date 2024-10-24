@@ -1,5 +1,5 @@
-﻿using ResourceSystem.Data;
-using UnityEngine;
+﻿using Core.Services;
+using ResourceSystem.Data;
 using UnityEngine.UI;
 
 namespace ResourceSystem.Services
@@ -12,9 +12,11 @@ namespace ResourceSystem.Services
         private static ResourceViewService _instance;
 
         private readonly ResourcesViewDataSO _resourcesViewData =
-            Resources.Load<ResourcesViewDataSO>(RESOURCE_VIEW_DATA_PATH);
+            ResourceLoader.LoadResource<ResourcesViewDataSO>(RESOURCE_VIEW_DATA_PATH);
 
         public static ResourceViewService Instance => _instance ??= new ResourceViewService();
+
+        ~ResourceViewService() => ResourceLoader.UnloadResource(_resourcesViewData);
 
         public void SetSprite(Image target, ResourceType resourceType, bool state)
         {

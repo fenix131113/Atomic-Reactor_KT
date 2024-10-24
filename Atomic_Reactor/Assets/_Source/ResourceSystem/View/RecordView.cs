@@ -1,5 +1,4 @@
-﻿using Core;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -9,23 +8,14 @@ namespace ResourceSystem.View
     {
         [SerializeField] private TMP_Text recordLabel;
 
-        private float _recordTime;
-        private GameInfo _gameInfo;
+        private RecordLogic _recordLogic;
 
         [Inject]
-        private void Construct(GameInfo gameInfo)
-        {
-            _gameInfo = gameInfo;
-        }
-
-        private void Update()
-        {
-            if (_gameInfo.IsPlaying)
-                _recordTime += Time.deltaTime;
-        }
+        private void Construct(RecordLogic recordLogic) => _recordLogic = recordLogic;
 
         private void FixedUpdate() => RedrawTime();
 
-        private void RedrawTime() => recordLabel.text = $"{(int)(_recordTime / 60)}:{(int)_recordTime}";
+        private void RedrawTime() =>
+            recordLabel.text = $"{(int)(_recordLogic.RecordTime / 60)}:{(int)_recordLogic.RecordTime}";
     }
 }

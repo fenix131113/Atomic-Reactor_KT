@@ -1,8 +1,13 @@
 ﻿namespace Core.StateMachine
 {
-    public abstract class State
+    public class State
     {
-        public abstract void Enter();
-        public abstract void Exit();
+        public virtual void Enter()
+        {
+        }
+
+        public virtual void Exit()
+        {
+        }
     }
 }

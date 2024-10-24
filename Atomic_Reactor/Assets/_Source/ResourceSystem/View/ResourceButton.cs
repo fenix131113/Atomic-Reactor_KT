@@ -1,4 +1,5 @@
-﻿using Core.StateMachine;
+﻿using Core.Services;
+using Core.StateMachine;
 using Core.StateMachine.GameStates;
 using ResourceSystem.Data;
 using ResourceSystem.Services;
@@ -17,7 +18,7 @@ namespace ResourceSystem.View
         [field: SerializeField] public Image TargetImage { get; private set; }
 
         private GameStateMachine _gameStateMachine;
-        private GUID _timerId;
+        private int _timerId;
         private bool _isActive = true;
         private float _decayTime;
         private float _enrichmentTime;
@@ -57,7 +58,7 @@ namespace ResourceSystem.View
 
         private void Init()
         {
-            _timerId = GUID.Generate();
+            _timerId = UniqueIdGenerator.GenerateId();
             CheckButtonState();
             LoadData();
             StartDecayTimer();

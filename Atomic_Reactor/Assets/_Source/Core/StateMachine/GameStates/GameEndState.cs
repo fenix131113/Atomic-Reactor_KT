@@ -7,9 +7,5 @@
         public GameEndState(GameInfo gameInfo) => _gameInfo = gameInfo;
 
         public override void Enter() => _gameInfo.SetPlayingState(false);
-
-        public override void Exit()
-        {
-        }
     }
 }
